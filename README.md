@@ -62,3 +62,13 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Run code
+
+```
+cp .env.example .env (windown copy file .env.example to .env)
+docker/bin/sail up -d --build
+docker-compose exec laravel.test composer install
+docker-compose exec laravel.test php artisan key:generate
+docker-compose exec laravel.test php artisan migrate
+```
