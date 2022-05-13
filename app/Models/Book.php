@@ -19,7 +19,8 @@ class Book extends Model
         'author', 
         'title', 
         'image', 
-        'price', 
+        'price',
+        'amount',
         'initialprice'
     ];
 

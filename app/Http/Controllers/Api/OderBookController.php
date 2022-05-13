@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\UserResource;
-use App\Models\User;
+use App\Http\Resources\OderBookResource;
+use App\Models\OderBook;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class OderBookController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return UserResource::collection(User::all());
+        return OderBookResource::collection(OderBook::all());
     }
 
     /**
@@ -27,8 +27,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = User::firstOrCreate($request->all());
-        return new UserResource($user);
+        $oderbook = OderBook::firstOrCreate($request->all());
+        return new OderBookResource($oderbook);
     }
 
     /**
@@ -39,22 +39,22 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
-        return new UserResource($user);
+        $oderbook = OderBook::find($id);
+        return new OderBookResource($oderbook);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $oderbook = User::find($id);
+        $oderbook = OderBook::find($id);
         $oderbook->update($request->all());
-        return new UserResource($oderbook);
+        return new OderBookResource($oderbook);
     }
 
     /**
@@ -65,7 +65,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        User::whereId($id)->delete();
+        OderBook::whereId($id)->delete();
         return response()->json(["destroy" => "OK"], \Illuminate\Http\Response::HTTP_OK);
     }
 }

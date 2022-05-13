@@ -9,6 +9,11 @@ class OderBook extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'book_id',
+        'amount'
+    ];
+
     public function oder() {
         $this->belongsTo(Oder::class);
     }

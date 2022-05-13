@@ -19,7 +19,7 @@ class CreateOderBooksTable extends Migration
             $table->foreign('oder_id')->references('id')->on('oders');
             $table->integer('book_id')->unsigned();
             $table->foreign('book_id')->references('id')->on('books');
-            $table->integer('price');
+            $table->integer('amount');
             $table->timestamps();
         });
     }

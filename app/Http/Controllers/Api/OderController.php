@@ -16,8 +16,6 @@ class OderController extends Controller
      */
     public function index()
     {
-        $oder = Oder::find(1);
-        $user = $oder->users;
         return OderResource::collection(Oder::all());
     }
 
@@ -42,8 +40,6 @@ class OderController extends Controller
     public function show($id)
     {
         $oder = Oder::find($id);
-        $users = $oder->users();
-        dd($users);
         return new OderResource($oder);
     }
 
@@ -51,22 +47,29 @@ class OderController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Oder  $oder
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Oder $oder)
+    public function update(Request $request, $id)
     {
-        //
+        $oder = Oder::find($id);
+        $oder->update($request->all());
+        return new OderResource($oder);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Oder  $oder
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Oder $oder)
+    public function destroy($id)
     {
-        //
+        try {
+            Oder::whereId($id)->delete();
+            return response()->json(["destroy" => "OK"], \Illuminate\Http\Response::HTTP_OK);
+        } catch (\Illuminate\Database\QueryException $e) {
+            return response()->json(["destroy" => "ERROR"], \Illuminate\Http\Response::HTTP_OK);
+        }
     }
 }
