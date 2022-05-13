@@ -41,4 +41,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function oder() {
+        $this->hasMany(Oder::class, 'user_id');
+    }
+
+    public function book() {
+        return $this->hasOneThrough(Book::class, Oder::class);
+    }
 }

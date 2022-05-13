@@ -2,9 +2,28 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
-    protected $fillable = ['isbn', 'author', 'title', 'image', 'price', 'initialprice'];
+    use HasFactory;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'isbn', 
+        'author', 
+        'title', 
+        'image', 
+        'price', 
+        'initialprice'
+    ];
+
+    public function oder() {
+        return $this->hasOne(Oder::class);
+    }
 }

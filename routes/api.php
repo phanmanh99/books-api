@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\BookController;
+use App\Http\Controllers\Api\OderController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,5 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 // Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::apiResource('users', UserController::class);
     Route::apiResource('books', BookController::class);
+    Route::apiResource('oders', OderController::class);
 // });

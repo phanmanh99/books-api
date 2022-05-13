@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Book;
-use App\Http\Resources\Book as BookResource;
+use App\Http\Resources\BookResource;
 use Database\Seeders\BookSeeder;
 use Illuminate\Http\Request;
 
@@ -42,7 +42,8 @@ class BookController extends Controller
     public function show($id)
     {
         $book = Book::find($id);
-        return new BookResource($book);
+        dd($book->oder);
+        return response()->json($book->oder());
     }
 
     /**
